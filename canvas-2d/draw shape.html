@@ -18,6 +18,7 @@
     if (sides <= 2) return false
     ctx.translate(x, y)
     for (let i = 0; i < sides; i++) {
+      // calculate the rotation
       const rotation = (Math.PI * 2 / sides) * i
 
       if (i === 0) {
@@ -26,6 +27,7 @@
         ctx.lineTo(r * Math.cos(rotation), r * Math.sin(rotation))
       }
     }
+     // close path and stroke it
     ctx.closePath()
     ctx.stroke()
     ctx.resetTransform()
