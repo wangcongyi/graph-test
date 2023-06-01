@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<canvas></canvas>
+<script>
+  const canvas = document.querySelector('canvas')
+  canvas.width = 400
+  canvas.height = 200
 
+  const ctx = canvas.getContext('2d')
+
+
+  function drawShape(x, y, r, sides) {
+    if (sides <= 2) return false
+    ctx.translate(x, y)
+    for (let i = 0; i < sides; i++) {
+      const rotation = (Math.PI * 2 / sides) * i
+
+      if (i === 0) {
+        ctx.moveTo(r * Math.cos(rotation), r * Math.sin(rotation))
+      } else {
+        ctx.lineTo(r * Math.cos(rotation), r * Math.sin(rotation))
+      }
+    }
+    ctx.closePath()
+    ctx.stroke()
+    ctx.resetTransform()
+  }
+
+  // drawShape(100, 100, 50, 10)
+
+
+</script>
+</body>
+</html>
