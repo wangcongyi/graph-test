@@ -1,2 +1,3 @@
-# graph-test
-### 学习  canvas 2d、3d 的东西
+> 2023.06.05
+  - 删除 Three-copy 项目， 整合前端图形方面的知识（canvas、webGL、webGPU、ect...)
+  - 学习之路好漫长啊～
