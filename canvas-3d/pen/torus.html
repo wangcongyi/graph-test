@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    html, body, canvas{
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+  import * as THREE from 'https://cdn.skypack.dev/three@0.133.1/build/three.module'
+  import { OrbitControls } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/controls/OrbitControls'
+
+  const scene = new THREE.Scene()
+  scene.background = new THREE.Color(0xf5f5f5)
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 60)
+  camera.position.set(0, 4, 10)
+  scene.add(camera)
+
+  const geometry = new THREE.TorusKnotGeometry(1, .4, 200, 50, 2, 1)
+  geometry.rotateX(.5 * Math.PI)
+  const material = new THREE.MeshNormalMaterial({})
+  const mesh = new THREE.Mesh(geometry, material)
+  scene.add(mesh)
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('c'),
+    antialias: true,
+  })
+
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(window.innerWidth, window.innerHeight)
+
+  const orbit = new OrbitControls(camera, renderer.domElement)
+  orbit.autoRotate = true
+  orbit.autoRotateSpeed = 50
+
+  function render() {
+    orbit.update()
+    renderer.render(scene, camera)
+    requestAnimationFrame(render)
+  }
+
+  render()
+
+
+</script>
+</body>
+</html>
